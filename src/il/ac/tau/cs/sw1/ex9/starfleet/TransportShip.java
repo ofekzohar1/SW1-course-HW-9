@@ -28,4 +28,12 @@ public class TransportShip extends myAbstractSpaceship {
 		String desc = "\n\tCargoCapacity=" + _cargoCapacity + "\n\tPassengerCapacity=" +_passengerCapacity;
 		return super.toString() + desc;
 	}
+
+	public int getCargoCapacity() {
+		return _cargoCapacity;
+	}
+
+	public int getPassengerCapacity() {
+		return _passengerCapacity;
+	}
 }

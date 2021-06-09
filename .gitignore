@@ -6,3 +6,7 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+/src/il/ac/tau/cs/sw1/ex9/riddles/RiddlesTester.java
+/src/il/ac/tau/cs/sw1/ex9/starfleet/SpacefleetTester.java
+/src/il/ac/tau/cs/sw1/ex9/starfleet/StarfleetManagerTester-Output-All.txt
+/src/il/ac/tau/cs/sw1/ex9/TesterUtil.java
