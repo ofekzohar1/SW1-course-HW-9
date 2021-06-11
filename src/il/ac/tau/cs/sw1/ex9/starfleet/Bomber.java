@@ -22,6 +22,7 @@ public class Bomber extends myAbstractCombatSpaceship {
 
     @Override
     public int getAnnualMaintenanceCost() {
+        // Calculate technicians discount on weapons' maintenance - 10% per technician
         int weaponCost = (int) ((super.getAnnualMaintenanceCost() - BASIC_ANNUAL_MAINTENANCE_COST) * (1 - _numberOfTechnicians * TECHNICIANS_DISCOUNT));
         return weaponCost + BASIC_ANNUAL_MAINTENANCE_COST;
     }

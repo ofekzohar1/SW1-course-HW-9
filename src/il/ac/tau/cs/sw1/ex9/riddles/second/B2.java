@@ -9,6 +9,7 @@ public class B2 extends A2 {
     }
 
     @Override
+    // Getting UpperCase for the case randomBool is True
     public String foo(String input) {
         return input.toUpperCase();
     }

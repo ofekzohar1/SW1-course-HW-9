@@ -23,6 +23,8 @@ public class B4 implements Iterator<String> {
     }
 
     @Override
+    // Iterating over the array 'randNum' times
+    // So array[i] == iterateList[i + j * lengthOfArray] for each j from 0 to ranNum (excluded)
     public String next() {
         String temp = stringsArr[cuurIndex];
         cuurIndex++;

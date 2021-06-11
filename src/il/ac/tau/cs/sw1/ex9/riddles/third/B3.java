@@ -7,6 +7,7 @@ public class B3 extends A3 {
         super(s);
     }
 
+    // Throw B3 type exception so always catch it on try-catch block
     public void foo(String s) throws B3 {
         throw new B3(s);
     }

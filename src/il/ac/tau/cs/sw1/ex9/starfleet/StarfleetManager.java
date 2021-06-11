@@ -1,8 +1,6 @@
 package il.ac.tau.cs.sw1.ex9.starfleet;
 
-
 import java.util.*;
-
 
 public class StarfleetManager {
 
@@ -13,12 +11,13 @@ public class StarfleetManager {
      */
     public static List<String> getShipDescriptionsSortedByFirePowerAndCommissionYear(Collection<Spaceship> fleet) {
         ArrayList<Spaceship> fleetList = new ArrayList<>(fleet);
+        // Sort ship list (fleet) in reversed order according to Spaceship's CompareTo method
         fleetList.sort(Collections.reverseOrder());
-        ArrayList<String> sortedFlettAsStrings = new ArrayList<>();
+        ArrayList<String> sortedFleetAsStrings = new ArrayList<>();
         for (Spaceship ship : fleetList) {
-            sortedFlettAsStrings.add(ship.toString());
+            sortedFleetAsStrings.add(ship.toString()); // Add description of each ship in the fleet
         }
-        return sortedFlettAsStrings;
+        return sortedFleetAsStrings;
     }
 
     /**
@@ -27,6 +26,8 @@ public class StarfleetManager {
     public static Map<String, Integer> getInstanceNumberPerClass(Collection<Spaceship> fleet) {
         HashMap<String, Integer> fleetCounter = new HashMap<>();
         for (Spaceship ship : fleet) {
+            // Merge method - if key (ship) exists add 1 to it's value, if not exist add as new key with value 1
+            // Using getSimpleName() to get ship's type
             fleetCounter.merge(ship.getClass().getSimpleName(), 1, Integer::sum);
         }
         return fleetCounter;
@@ -51,7 +52,7 @@ public class StarfleetManager {
     public static Set<String> getFleetWeaponNames(Collection<Spaceship> fleet) {
         HashSet<String> weaponsSet = new HashSet<>();
         for (Spaceship ship : fleet) {
-            if (ship instanceof myAbstractCombatSpaceship) {
+            if (ship instanceof myAbstractCombatSpaceship) { // Only if ship is a combat ship
                 myAbstractCombatSpaceship combatShip = (myAbstractCombatSpaceship) ship;
                 for (Weapon weapon : combatShip.getWeapon()) {
                     weaponsSet.add(weapon.getName());
@@ -80,7 +81,7 @@ public class StarfleetManager {
         int sumAges = 0;
         for (Spaceship ship : fleet) {
             for (CrewMember member : ship.getCrewMembers()) {
-                if (member instanceof Officer) {
+                if (member instanceof Officer) { // Only if CrewMember is Officer
                     countTotalOfficers++;
                     sumAges += member.getAge();
                 }
@@ -95,18 +96,18 @@ public class StarfleetManager {
     public static Map<Officer, Spaceship> getHighestRankingOfficerPerShip(Collection<Spaceship> fleet) {
         HashMap<Officer, Spaceship> highestRankingOfficerPerShip = new HashMap<>();
         for (Spaceship ship : fleet) {
-            OfficerRank maxRank = OfficerRank.Ensign;
+            OfficerRank maxRank = OfficerRank.Ensign; // Lowest rank
             Officer highestRankOfficer = null;
             for (CrewMember member : ship.getCrewMembers()) {
-                if (member instanceof Officer) {
+                if (member instanceof Officer) { // Only if CrewMember is Officer
                     Officer officer = (Officer) member;
-                    if (officer.getRank().compareTo(maxRank) >= 0) {
+                    if (officer.getRank().compareTo(maxRank) >= 0) { // Save the maximal rank for each ship
                         maxRank = officer.getRank();
                         highestRankOfficer = officer;
                     }
                 }
             }
-            if (highestRankOfficer != null)
+            if (highestRankOfficer != null) // At least one officer on board
                 highestRankingOfficerPerShip.put(highestRankOfficer, ship);
         }
         return highestRankingOfficerPerShip;
@@ -121,13 +122,15 @@ public class StarfleetManager {
         HashMap<OfficerRank, Integer> officerRanksCounter = new HashMap<>();
         for (Spaceship ship : fleet) {
             for (CrewMember member : ship.getCrewMembers()) {
-                if (member instanceof Officer) {
+                if (member instanceof Officer) { // Only if CrewMember is Officer
                     Officer officer = (Officer) member;
+                    // Merge method - if key (Officer) exists add 1 to it's value, if not exist add as new key with value 1
                     officerRanksCounter.merge(officer.getRank(), 1, Integer::sum);
                 }
             }
         }
         List<Map.Entry<OfficerRank, Integer>> listOfRanksCounter = new ArrayList<>(officerRanksCounter.entrySet());
+        // Sort using lambda expression
         listOfRanksCounter.sort((o1, o2) -> {
             int comp = Integer.compare(o1.getValue(), o2.getValue());
             if (comp != 0)

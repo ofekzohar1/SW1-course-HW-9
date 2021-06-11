@@ -15,12 +15,16 @@ public class StealthCruiser extends Fighter {
 		engineCounter++;
 	}
 
+	/**
+	 * Constructor with default weapons list (LASER_CANNONS)
+	 */
 	public StealthCruiser(String name, int commissionYear, float maximalSpeed, Set<CrewMember> crewMembers){
 		this(name, commissionYear, maximalSpeed, crewMembers, Arrays.asList(LASER_CANNONS));
 	}
 
 	@Override
 	public int getAnnualMaintenanceCost() {
+		// Add extra engine maintenance cost in direct proportion to the number of engines in the fleet
 		return super.getAnnualMaintenanceCost() + ADDED_MAINT_COST_PER_ENGINE * engineCounter;
 	}
 }

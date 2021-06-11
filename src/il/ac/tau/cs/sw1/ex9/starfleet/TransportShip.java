@@ -20,6 +20,7 @@ public class TransportShip extends myAbstractSpaceship {
 
 	@Override
 	public int getAnnualMaintenanceCost() {
+		// Add maintenance cost per MT passengers and MT cargo
 		return super.getAnnualMaintenanceCost() + (COST_PER_MEGATON_CARGO * _cargoCapacity) + (COST_PER_MEGATON_PASSENGERS * _passengerCapacity);
 	}
 

@@ -17,6 +17,7 @@ public class ColonialViper extends myAbstractCombatSpaceship {
 
 	@Override
 	public int getAnnualMaintenanceCost() {
+		// Add maintenance cost per crew member on board
 		return super.getAnnualMaintenanceCost() + _crewMembers.size() * MAINT_COST_PER_CREW_MEMBER;
 	}
 }
